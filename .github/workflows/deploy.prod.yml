@@ -24,7 +24,7 @@ jobs:
       - name: Release Go Binary
         uses: goreleaser/goreleaser-action@v2
         with:
-          main: ./nes-ocr-app
+          workdir: ./nes-ocr-app
           distribution: goreleaser
           version: latest
           args: release --rm-dist
