@@ -1,9 +1,10 @@
 name: NOT PROD Deployment Pipeline
 
 on:
-  release:
-    types:
-      - created
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 defaults:
   run:
@@ -26,6 +27,7 @@ jobs:
           distribution: goreleaser
           version: latest
           args: release --rm-dist
-        builds: ./nes-ocr-app
+        builds:
+          - main: ./nes-ocr-app
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
