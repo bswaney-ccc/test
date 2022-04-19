@@ -13,8 +13,6 @@ defaults:
 jobs:
   build_go_binary:
     runs-on: ubuntu-latest
-    main: ./nes-ocr-app
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,7 +24,7 @@ jobs:
       - name: Release Go Binary
         uses: goreleaser/goreleaser-action@v2
         with:
-          workdir: ./nes-ocr-app
+          main: ./nes-ocr-app
           distribution: goreleaser
           version: latest
           args: release --rm-dist
