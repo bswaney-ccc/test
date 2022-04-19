@@ -13,6 +13,8 @@ defaults:
 jobs:
   build_go_binary:
     runs-on: ubuntu-latest
+    builds:
+      - main: ./nes-ocr-app
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -27,7 +29,6 @@ jobs:
           distribution: goreleaser
           version: latest
           args: release --rm-dist
-        builds:
-          - main: ./nes-ocr-app
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
