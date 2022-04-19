@@ -1,0 +1,29 @@
+name: PROD Deployment Pipeline
+
+on:
+  release:
+    types:
+      - created
+
+defaults:
+  run:
+    working-directory: "nes-ocr-app"
+
+jobs:
+  build_go_binary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+      - name: Release Go Binary
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          workdir: ./nes-ocr-app
+          distribution: goreleaser
+          version: latest
+          args: release --rm-dist
