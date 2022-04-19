@@ -1,4 +1,4 @@
-name: NOT PROD Deployment Pipeline
+name: Example Test
 
 on:
   workflow_dispatch:
@@ -26,6 +26,7 @@ jobs:
       - name: Release Go Binary
         uses: goreleaser/goreleaser-action@v2
         with:
+          workdir: ./nes-ocr-app
           distribution: goreleaser
           version: latest
           args: release --rm-dist
